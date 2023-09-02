@@ -45,8 +45,6 @@ Sağ alttaki butona tıklandığında da yeni liste ögesi oluşturma ekranına 
 <a href="https://github.com/yemregul94/Android-ToDoList/blob/main/screenshots/Sort.png" target="_blank">
 <img src="https://github.com/yemregul94/Android-ToDoList/blob/main/screenshots/Sort.png" width="200" style="max-width:100%;"></a>
 
-### Kaydırma Hareketleri
-
 Uygulamanın farklı yerlerinde olduğu gibi ana ekranda da kaydırma işlemleri destekleniyor. Sağa kaydırınca silme, sola kaydırınca tamamlama işlemleri yapılıyor.
 
 <a href="https://github.com/yemregul94/Android-ToDoList/blob/main/screenshots/Swipe_Delete.png" target="_blank">
@@ -95,6 +93,17 @@ Bunların yanı sıra uygulamanın görünümünü aydınlık/gündüz veya kara
 
 <a href="https://github.com/yemregul94/Android-ToDoList/blob/main/screenshots/Login_Dark_En.png" target="_blank">
 <img src="https://github.com/yemregul94/Android-ToDoList/blob/main/screenshots/Login_Dark_En.png" width="200" style="max-width:100%;"></a>
+
+## Kullanım videoları
+
+Ana ekrandaki, detay ekranındaki ve ayarlar ekranındaki işlemleri aşağıdaki video ile daha rahat görebilirsiniz.
+
+https://github.com/yemregul94/Android-ToDoList/assets/88839970/a1c24109-53dd-41d4-bc5b-ff5710f2fa09
+
+Burada ise hesap ve anonim hesap işlemlerini görebilirsiniz.
+
+https://github.com/yemregul94/Android-ToDoList/assets/88839970/973fa7d2-b4a7-46dc-aefa-543e13bc7a6b
+
 
 ## Kullanılan Teknolojiler ve Yapılar
 
