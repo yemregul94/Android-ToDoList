@@ -1,0 +1,194 @@
+<!DOCTYPE resources [
+    <!ENTITY appname "Check It Off">]>
+
+<resources>
+    //App Name
+    <string name="app_name">Check It Off</string>
+
+    //Priority Labels
+    <string name="priority">Select Priority</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="high">High</string>
+    <string name="urgent">Urgent</string>
+    <string-array name="priority_array">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+        <item>Top</item>
+    </string-array>
+
+    //Complete Status
+    <string name="completed_true">Completed</string>
+    <string name="completed_false">Not Completed</string>
+
+    //Category Labels
+    <string name="category">Select Category</string>
+    <string name="all">All</string>
+    <string name="other">Other</string>
+    <string name="category_new">New</string>
+    //new is reserved by Java
+
+    <string name="example_work">Work</string>
+    <string name="example_home">Home</string>
+
+    //List Item Detail
+    <string name="select_color_label">Select Color</string>
+    <string name="sub_tasks_label">Sub Tasks</string>
+    <string name="last_update">Last Update: %s</string>
+    <string name="last_update_label">Last Update: 01/01/2001 01:01</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_desc">Description</string>
+    <string name="alert_empty_title">Title cannot be empty</string>
+
+    <string name="list_item_updated"><b>Updated:</b> %s</string>
+    <string name="list_item_created"><b>Created:</b> %s</string>
+
+    //Button Common
+    <string name="button_return">Return</string> //return is reserved by Java
+    <string name="save">Save</string>
+    <string name="update">Update</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="undo">Undo</string>
+    <string name="delete">Delete</string>
+    <string name="complete">Complete</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="logout">Logout</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="done">Done</string>
+    <string name="search">Search</string>
+
+    //Error, Info and Alert Common
+    <string name="removed">Removed: %s</string>
+    <string name="already_exists">Already Exists: %s</string>
+    <string name="input_hint">Input Here</string>
+
+    //Onboard
+    <string name="onboard_main_title">Dashboard</string>
+    <string name="onboard_swipe_title">Swipe Actions</string>
+    <string name="onboard_settings_title">Settings</string>
+    <string name="onboard_guest_title">Guest Accounts</string>
+
+    <string name="onboard_main_desc">In this screen you can list your ToDo tasks. You can access to edit screens by touching them.
+        \n\nYou can create new ToDo tasks by touching button at bottom right.
+        \n\nYou can filter, sort and search with the toolbar at the top.
+        \n\nAlso you can access menu from that toolbar.</string>
+    <string name="onboard_swipe_desc">ToDo tasks on dashboard, Sub Task on details screen and category list items supports swipe actions.
+        \n\nIf you swipe to right you can DELETE and if you swipe to left you can COMPLETE those items.
+        \n\nYou can undo the delete and restore ToDo tasks in few seconds</string>
+    <string name="onboard_settings_desc">You can edit account information and save your guest accounts in this screen.
+        \n\nAlso you can edit your category list in this screen.
+        \n\nYou can change application theme in this screen as well.</string>
+    <string name="onboard_guest_desc">&appname; is a cloud based application so you need an account to use.
+        However it supports guest accounts to ease the first time user experience.
+        \n\nIf you are going to use the app for a while, you should save your guest accounts because you can\'t access them after logging off.
+        \n\nYou can save your guest accounts in settings screen.</string>
+
+    <string name="onboard_welcome_desc">&appname;, is a cloud based to do list application.
+        You can take detailed notes with sub-items and easily track them here.
+        \n\n&appname; is a cloud based app so you can reach all of your datas without any delay if you create an account.
+        \n\nApplication can run smoothly in case of connection loss but we don\'t suggest a long use without a connection.
+        \n\nWe suggest you to read this tutorial before using the application.</string>
+
+    //Welcome
+    <string name="welcome_first_login">Welcome To &appname;</string>
+    <string name="welcome_re_login">Welcome back %s</string>
+
+    <string name="welcome_title">Welcome</string>
+    <string name="welcome_desc">Example Description</string>
+    <string name="welcome_sub_title1">Example Task 1</string>
+    <string name="welcome_sub_title2">Example Task 2</string>
+
+    //Alert Category
+    <string name="add_new_category">Add New Category</string>
+    <string name="input_category_name">Input Category Name</string>
+    <string name="edit_category">Edit Category</string>
+
+    //Alert Sub Task
+    <string name="input_sub_task_name">Input Sub Task Title</string>
+    <string name="add_new_sub_task">Add New Sub Task</string>
+    <string name="edit_sub_task">Edit Sub Task</string>
+    <string name="sub_task_empty">Sub Task cannot be empty</string>
+
+
+    //Alert Settings
+    <string name="edit_user_info">Edit User Information</string>
+    <string name="input_email">Input Email Address</string>
+    <string name="input_new_email">Input New Email Address</string>
+    <string name="input_different_email">Input a Different Email Address</string>
+    <string name="input_new_password">Input New Password</string>
+    <string name="input_valid_email">Input a <b>Valid</b> Email Address</string>
+    <string name="input_valid_password">Password must be at least 6 characters</string>
+    <string name="cannot_undone">\nThis action cannot be undone. \nAre you sure?</string>
+    <string name="category_empty">Category Name cannot be empty</string>
+
+    //Menu
+    <string name="menu_filter_priority">Filter Priority</string>
+
+    <string name="menu_fav_only">Only Favorites</string>
+    <string name="menu_hide_completed">Hide Completed</string>
+
+    <string name="menu_first_created">First Created</string>
+    <string name="menu_last_created">Last Created</string>
+    <string name="menu_first_updated">First Updated</string>
+    <string name="menu_last_updated">Last Updated</string>
+    <string name="menu_a_z">A-Z</string>
+    <string name="menu_z_a">Z-A</string>
+
+    //Auth Common
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="empty_mail_password">Email and Password can\'t be empty</string>
+    <string name="empty_email">Email can\'t be empty</string>
+
+    //Login
+    <string name="login">Login</string>
+    <string name="have_no_account">No account? <b>Register</b></string>
+    <string name="or">Or</string>
+    <string name="login_as_guest">Login as Guest</string>
+
+    //Register
+    <string name="already_have_account">Already have account? <b>Login</b></string>
+    <string name="register">Register</string>
+
+    //Reset
+    <string name="reset_password">Reset Password</string>
+    <string name="reset">Reset</string>
+    <string name="password_reset_success">Password reset successful \nCheck your email inbox</string>
+
+    //Settings
+    <string name="settings">Settings</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="save_guest_account">Save Guest Account</string>
+    <string name="change_email_address">Change Email Address</string>
+    <string name="change_password">Change Password</string>
+    <string name="edit_categories">Edit Categories</string>
+    <string name="delete_user_data">Delete All Data</string>
+    <string name="delete_user">Delete Account</string>
+    <string name="delete_action">Delete Action</string>
+    <string name="app_settings">App Settings</string>
+    <string name="change_theme">Change Theme</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="system">System Default</string>
+    <string name="about_app">About Application</string>
+    <string name="go_to_tutorial">Relaunch Tutorial</string>
+
+    <string name="save_guest_success">Guest Account Saved</string>
+    <string name="change_email_success">Email Address Changed</string>
+    <string name="change_password_success">Password Changed</string>
+    <string name="delete_user_success">Account Deleted</string>
+    <string name="delete_user_data_success">All Data Deleted</string>
+    <string name="category_list_updated">Category List Updated</string>
+
+    <string name="share_with">Share with:</string>
+    <string name="share">Share</string>
+    <string name="about_dev">This application has been developed by <b>Yunus Emre GUL</b> and distributed for free to use.
+        You can use the links below to give feedbacks, contact or help/support.</string>
+    <string name="about_share">If you want to share this application with people you know, you can scan the QR code with their devices or
+        you can use the share button to share the link via other applications.</string>
+</resources>

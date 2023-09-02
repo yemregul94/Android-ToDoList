@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE resources [
+    <!ENTITY appname "Check It Off">]>
+
+<resources>
+    //App Name
+    <string name="app_name">Check It Off</string>
+
+    //Priority Labels
+    <string name="priority">Öncelik Seçin</string>
+    <string name="low">Düşük</string>
+    <string name="medium">Orta</string>
+    <string name="high">Yüksek</string>
+    <string name="urgent">Acil</string>
+    <string-array name="priority_array">
+        <item>Düşük</item>
+        <item>Orta</item>
+        <item>Yüksek</item>
+        <item>Acil</item>
+    </string-array>
+
+    //Complete Status
+    <string name="completed_true">Tamamlandı</string>
+    <string name="completed_false">Tamamlanmadı</string>
+
+    //Category Labels
+    <string name="category">Kategori Seçin</string>
+    <string name="all">Hepsi</string>
+    <string name="other">Diğer</string>
+    <string name="category_new">Yeni</string> //new is reserved by Java
+
+    <string name="example_work">İş</string>
+    <string name="example_home">Ev</string>
+
+    //List Item Detail
+    <string name="select_color_label">Renk Seçin</string>
+    <string name="sub_tasks_label">Alt Görevler</string>
+    <string name="last_update">Son Güncelleme: %s</string>
+    <string name="last_update_label">Son Güncelleme: 01/01/2001 01:01</string>
+    <string name="hint_title">Başlık</string>
+    <string name="hint_desc">Açıklama</string>
+    <string name="alert_empty_title">Başlık Boş Olamaz</string>
+
+    <string name="list_item_updated"><b>Güncellendi:</b> %s</string>
+    <string name="list_item_created"><b>Oluşturuldu:</b> %s</string>
+
+    //Button Common
+    <string name="button_return">Geri Dön</string>
+    <string name="save">Kaydet</string>
+    <string name="update">Güncelle</string>
+    <string name="add">Ekle</string>
+    <string name="cancel">İptal</string>
+    <string name="undo">Geri Al</string>
+    <string name="delete">Sil</string>
+    <string name="complete">Tamamla</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="logout">Çıkış Yap</string>
+    <string name="next">Sonraki</string>
+    <string name="skip">Atla</string>
+    <string name="done">Bitir</string>
+    <string name="search">Ara</string>
+
+    //Error, Info and Alert Common
+    <string name="removed">Silindi: %s</string>
+    <string name="already_exists">Zaten Var: %s</string>
+    <string name="input_hint">Metni Giriniz</string>
+
+    //Onboard
+    <string name="onboard_main_title">Ana Ekran</string>
+    <string name="onboard_swipe_title">Kaydırma Hareketleri</string>
+    <string name="onboard_settings_title">Ayarlar</string>
+    <string name="onboard_guest_title">Misafir Hesapları</string>
+
+    <string name="onboard_main_desc">Bu ekranda oluşturduğunuz liste ögelerini görüntüleyebilirsiniz. Üzerlerine dokunursanız düzenleme ekranına yönlendirilirsiniz.
+        \n\nSağ alttaki buton ile de yeni liste ögesi oluşturabilirsiniz.
+        \n\nÜst taraftaki menüden de filtreleme, sıralama ve arama yapabilirsiniz.
+        \n\nAyrıca ayarlara da üst taraftaki menüden ulaşabilirsiniz.</string>
+    <string name="onboard_swipe_desc">Ana ekranda gördüğünüz liste ögeleri, detay ekranında alt görevler ve kategori ögeleri kaydırma hareketleri desteklemektedir.
+        \n\nBunları sağa çektiğinizde SİLME, sola çektiğinizde de TAMAMLAMA işlemleri yapar.
+        \n\nSilinen ögeyi birkaç saniye içinde geri alabilirsiniz.</string>
+    <string name="onboard_settings_desc">Ayarlar ekranında hesap bilgilerinizi değiştirebilirsiniz ve misafir hesaplarınızı kayıtlı hesaba dönüştürebilirsiniz.
+        \n\nBunun yanı sıra kategori listenizi de buradan düzenleyebilirsiniz.
+        \n\nUygulamanın renk modunu da bu ekrandan değiştirebilirsiniz.</string>
+    <string name="onboard_guest_desc">&appname; internet tabanlı olduğu için bir hesaba ihtiyacınız var
+        ancak ilk kullanımda kolaylık yaratması açısından misafir hesap seçeneği de sunulmuştur.
+        \n\nUygulamayı uzun süre kullanacaksanız misafir hesabınızı kaydetmenizi öneririz çünkü çıkış yaptığınızda o hesaba erişiminiz kesilecektir.
+        \n\nMisafir hesabınızı, ayarlar ekranında kolayca kaydedebilirsiniz.</string>
+
+    <string name="onboard_welcome_desc">&appname;, internet tabanlı bir not defteri ve yapılacaklar listesi uygulamasıdır.
+        \n\nUnutmak istemediğiniz şeylere dair detaylı ve maddeler içeren notlar alabilirsiniz ve &appname; ile rahatlıkla takip edebilirsiniz.
+        \n\n&appname; internet tabanlı olduğu için hesabınıza giriş yaptıktan sonra herhangi bir cihazdan, aynı verilere anında erişebilirsiniz.
+        İnternetsiz kalmanız durumunda da uygulama sorunsuz çalışabilmektedir ancak uzun süre internetsiz kullanımı önermiyoruz.
+        \n\nUygulama hakkında bilgiler veren bu başlangıç rehberini dikkatle okumanızı öneririz.</string>
+
+    //Welcome
+    <string name="welcome_first_login">&appname;\'e Hoş geldiniz</string>
+    <string name="welcome_re_login">Hoş geldin %s</string>
+
+    <string name="welcome_title">Hoş Geldiniz</string>
+    <string name="welcome_desc">Örnek Açıklama</string>
+    <string name="welcome_sub_title1">Örnek Görev 1</string>
+    <string name="welcome_sub_title2">Örnek Görev 2</string>
+
+    //Alert Category
+    <string name="add_new_category">Yeni Kategori Ekleyin</string>
+    <string name="input_category_name">Kategori Adını Giriniz</string>
+    <string name="edit_category">Kategoriyi Düzenleyin</string>
+
+    //Alert Sub Task
+    <string name="input_sub_task_name">Alt Görev Adını Giriniz</string>
+    <string name="add_new_sub_task">Yeni Alt Görev Ekleyin</string>
+    <string name="edit_sub_task">Alt Görevi Düzenleyin</string>
+    <string name="sub_task_empty">Alt Görev boş olamaz</string>
+
+    //Alert Settings
+    <string name="edit_user_info">Kullanıcı Bilgilerini Düzenleyin</string>
+    <string name="input_email">Email Adresi Giriniz</string>
+    <string name="input_new_email">Yeni Email Adresini Giriniz</string>
+    <string name="input_different_email">Farklı Bir Email Adresi Giriniz</string>
+    <string name="input_new_password">Yeni Şifrenizi Giriniz</string>
+    <string name="input_valid_email"><b>Geçerli</b> Bir Email Adresi Giriniz</string>
+    <string name="input_valid_password">Şifre en az 6 karakter olmalı</string>
+    <string name="cannot_undone">\nBu işlem geri alınamaz. \nEmin misiniz?</string>
+    <string name="category_empty">Kategori Adı boş olamaz</string>
+
+
+    //Menu
+    <string name="menu_filter_priority">Öncelik Filtrele</string>
+
+    <string name="menu_fav_only">Sadece Favoriler</string>
+    <string name="menu_hide_completed">Tamamlananları Gizle</string>
+
+    <string name="menu_first_created">İlk Oluşturulan</string>
+    <string name="menu_last_created">Son Oluşturulan</string>
+    <string name="menu_first_updated">İlk Güncellenen</string>
+    <string name="menu_last_updated">Son Güncellenen</string>
+    <string name="menu_a_z">A-Z</string>
+    <string name="menu_z_a">Z-A</string>
+
+    //Auth Common
+    <string name="email">Email</string>
+    <string name="password">Şifre</string>
+    <string name="forgot_password">Şifremi Unuttum</string>
+    <string name="empty_mail_password">Email ve Şifre boş olamaz</string>
+    <string name="empty_email">Email boş olamaz</string>
+
+    //Login
+    <string name="login">Giriş Yap</string>
+    <string name="have_no_account">Hesabın yok mu? <b>Kayıt Ol</b></string>
+    <string name="or">Veya</string>
+    <string name="login_as_guest">Misafir Olarak Giriş Yap</string>
+
+    //Register
+    <string name="already_have_account">Zaten kayıtlı mısın? <b>Giriş Yap</b></string>
+    <string name="register">Kayıt Ol</string>
+
+    //Reset
+    <string name="reset_password">Şifreyi Sıfırla</string>
+    <string name="reset">Sıfırla</string>
+    <string name="password_reset_success">Şifre Sıfırlama Başarılı \nEmail gelen kutunuzu kontrol edin</string>
+
+    //Settings
+    <string name="settings">Ayarlar</string>
+    <string name="account_settings">Hesap Ayarları</string>
+    <string name="save_guest_account">Misafir Hesabı Kaydet</string>
+    <string name="change_email_address">Email Adresini Değiştir</string>
+    <string name="change_password">Şifreyi Değiştir</string>
+    <string name="edit_categories">Kategorileri Düzenle</string>
+    <string name="delete_user_data">Tüm Verilerini Sil</string>
+    <string name="delete_user">Hesabı Sil</string>
+    <string name="delete_action">Silme İşlemi</string>
+    <string name="app_settings">Uygulama Ayarları</string>
+    <string name="change_theme">Temayı Değiştirin</string>
+    <string name="light">Gündüz</string>
+    <string name="dark">Gece</string>
+    <string name="system">Sistem Tercihi</string>
+    <string name="about_app">Uygulama Hakkında</string>
+    <string name="go_to_tutorial">Rehberi Tekrar Aç</string>
+
+    <string name="save_guest_success">Misafir Hesap Kaydedildi</string>
+    <string name="change_email_success">Email Adresi Değiştirildi</string>
+    <string name="change_password_success">Şifre Değiştirildi</string>
+    <string name="delete_user_success">Hesap Silindi</string>
+    <string name="delete_user_data_success">Tüm Veriler Silindi</string>
+    <string name="category_list_updated">Kategori Listesi Güncellendi</string>
+
+    <string name="share_with">Paylaşmak için uygulama seçin</string>
+    <string name="share">Paylaş</string>
+    <string name="about_dev">Bu uygulama <b>Yunus Emre GÜL</b> tarafından geliştirilip, ücretsiz olarak kullanıma sunulmuştur.
+        Geri dönüş yapmak, iletişim kurmak veya yardım/destek için aşağıdaki adresleri kullanabilirsiniz.</string>
+    <string name="about_share">Uygulamayı çevrenizle paylaşmak isterseniz; onların cihazlarından QR kodu okutabilirsiniz veya
+        paylaş butonunu kullanarak da uygulamanın linkini, farklı uygulamalarda paylaşabilirsiniz.</string>
+</resources>

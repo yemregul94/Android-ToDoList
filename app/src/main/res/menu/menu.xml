@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/filter_menu"
+        android:icon="@drawable/ic_filter"
+        android:title="Filter"
+        app:showAsAction="always">
+        <menu>
+            <group
+                android:id="@+id/priority_group"
+                android:checkableBehavior="single">
+                <item
+                    android:checkable="false"
+                    android:enabled="false"
+                    android:icon="@drawable/ic_priority"
+                    android:title="@string/priority" />
+                <item
+                    android:id="@+id/menu_all"
+                    android:title="@string/all" />
+                <item
+                    android:id="@+id/menu_low"
+                    android:title="@string/low" />
+                <item
+                    android:id="@+id/menu_medium"
+                    android:title="@string/medium" />
+                <item
+                    android:id="@+id/menu_high"
+                    android:title="@string/high" />
+                <item
+                    android:id="@+id/menu_top"
+                    android:title="@string/urgent" />
+            </group>
+            <item
+                android:enabled="false"
+                android:title="---" />
+            <group
+                android:id="@+id/filter_group"
+                android:checkableBehavior="all">
+                <item
+                    android:id="@+id/menu_filter_fav"
+                    android:title="@string/menu_fav_only" />
+                <item
+                    android:id="@+id/menu_filter_uncomplete"
+                    android:title="@string/menu_hide_completed" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/sort_menu"
+        android:icon="@drawable/ic_sort"
+        android:title="Sort"
+        app:showAsAction="always">
+        <menu>
+            <group
+                android:id="@+id/sort_group"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_first_created"
+                    android:title="@string/menu_first_created" />
+                <item
+                    android:id="@+id/menu_last_created"
+                    android:title="@string/menu_last_created" />
+                <item
+                    android:id="@+id/menu_first_updated"
+                    android:title="@string/menu_first_updated" />
+                <item
+                    android:id="@+id/menu_last_updated"
+                    android:title="@string/menu_last_updated" />
+                <item
+                    android:id="@+id/menu_title"
+                    android:title="@string/menu_a_z" />
+                <item
+                    android:id="@+id/menu_title_desc"
+                    android:title="@string/menu_z_a" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_profile"
+        android:icon="@drawable/ic_user"
+        android:title="Profile"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout"
+        android:visible="false"
+        app:showAsAction="always" />
+</menu>

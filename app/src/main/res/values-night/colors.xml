@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="theme_primary">#38A55B</color>
+    <color name="theme_primary_variant">#245E42</color>
+
+    <color name="theme_secondary">#43c76e</color>
+
+    <color name="red">#cf6679</color>
+    <color name="blue">#3C6496</color>
+
+    <color name="color1">#FF4848</color>
+    <color name="color2">#80BEFF</color>
+    <color name="color3">#7BFF7B</color>
+    <color name="color4">#FDE77A</color>
+    <color name="color5">#DD8FFF</color>
+    <color name="color6">#F79E5A</color>
+
+
+    <color name="priority_low">#80FF80</color>
+    <color name="priority_medium">#EFF874</color>
+    <color name="priority_high">#FA752B</color>
+    <color name="priority_top">#FB4646</color>
+
+    <color name="selected_chip_background">#38a55b</color>
+    <color name="selected_chip_text">#ffffff</color>
+
+    <color name="not_selected_chip_background">#35353F</color>
+    <color name="not_selected_chip_text">#38a55b</color>
+
+    <color name="task_preview_background">#1AFFFFFF</color>
+    <color name="details_layout_background">#08FFFFFF</color>
+
+    <color name="main_background">#181A20</color>
+    <color name="main_foreground">#32323C</color>
+    <color name="main_button">@color/theme_primary</color>
+    <color name="main_text">#FFFFFF</color>
+
+    <color name="grey_background">#121212</color>
+
+</resources>

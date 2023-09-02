@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="toDoList"
+            type="com.moonlight.todolist.data.model.ToDoListItem" />
+        <variable
+            name="color"
+            type="Integer" />
+        <variable
+            name="expandStatus"
+            type="Boolean" />
+        <variable
+            name="taskNull"
+            type="Boolean" />
+        <variable
+            name="priority"
+            type="String" />
+        <variable
+            name="priorityColor"
+            type="Integer" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/color_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/shape_corner_8dp"
+        android:backgroundTint="@{color}"
+        android:paddingStart="12dp"
+        android:paddingEnd="0dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_sub_task"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_corner_8dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@{toDoList.title}"
+                android:textColor="@color/main_text"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="List Title" />
+
+            <TextView
+                android:id="@+id/tv_list_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{toDoList.desc}"
+                android:textColor="@color/main_text"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/check_favorite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_list_title"
+                tools:text="Description of the list and item and stuff" />
+
+            <TextView
+                android:id="@+id/tv_list_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="@{toDoList.category}"
+                android:textColor="@color/main_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_items_preview"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Category" />
+
+            <TextView
+                android:id="@+id/tv_list_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="@{priority}"
+                android:textColor="@{priorityColor}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Priority" />
+
+            <CheckBox
+                android:id="@+id/check_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:button="@drawable/selector_favorite"
+                android:buttonTint="@color/red"
+                android:checked="@{toDoList.favorite}"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/check_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:button="@drawable/selector_complete"
+                android:buttonTint="@color/theme_primary"
+                android:checked="@{toDoList.completed}"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                app:layout_constraintBottom_toBottomOf="@+id/rv_items_preview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/rv_items_preview" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_items_preview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/shape_corner_8dp"
+                android:backgroundTint="@color/task_preview_background"
+                android:visibility='@{expandStatus ? View.VISIBLE : View.GONE}'
+                app:layout_constraintEnd_toStartOf="@+id/check_complete"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_list_desc"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_sub_task_preview"
+                tools:visibility="visible" />
+
+            <CheckBox
+                android:id="@+id/check_expand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:button="@drawable/selector_expand"
+                android:buttonTint="@color/theme_primary"
+                android:checked="@{expandStatus}"
+                android:minHeight="24dp"
+                android:visibility='@{taskNull ? View.GONE : View.VISIBLE}'
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_items_preview" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

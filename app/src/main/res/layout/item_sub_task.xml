@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="toDoItem"
+            type="com.moonlight.todolist.data.model.ToDoSubTask" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_sub_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/shape_corner_8dp"
+        android:backgroundTint="@color/selected_chip_background">
+
+        <TextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="7dp"
+            android:text="@{toDoItem.title}"
+            android:textColor="@color/main_text"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/check_item_complete"
+            app:layout_constraintStart_toEndOf="@+id/image_move"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Item Title" />
+
+        <CheckBox
+            android:id="@+id/check_item_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:button="@drawable/selector_complete"
+            android:buttonTint="@color/grey_background"
+            android:checked="@{toDoItem.completed}"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_title" />
+
+        <ImageView
+            android:id="@+id/image_move"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:tint="@color/main_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:srcCompat="@drawable/ic_drag_handle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

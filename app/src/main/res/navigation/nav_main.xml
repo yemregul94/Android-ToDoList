@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.moonlight.todolist.ui.main.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_goToListDetails"
+            app:destination="@id/listDetailsFragment" />
+        <action
+            android:id="@+id/action_goToUserSettings"
+            app:destination="@id/userSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listDetailsFragment"
+        android:name="com.moonlight.todolist.ui.main.listitemdetails.ListItemDetailsFragment"
+        android:label="fragment_list_details"
+        tools:layout="@layout/fragment_list_item_details" >
+        <argument
+            android:name="toDoListItem"
+            app:argType="com.moonlight.todolist.data.model.ToDoListItem"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_goToCategorySettings"
+            app:destination="@id/userSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userSettingsFragment"
+        android:name="com.moonlight.todolist.ui.main.usersettings.UserSettingsFragment"
+        android:label="fragment_user_settings"
+        tools:layout="@layout/fragment_user_settings" >
+        <action
+            android:id="@+id/action_goToAbout"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.moonlight.todolist.ui.main.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+</navigation>
