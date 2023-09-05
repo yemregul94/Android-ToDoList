@@ -26,8 +26,7 @@
     <string name="category">Select Category</string>
     <string name="all">All</string>
     <string name="other">Other</string>
-    <string name="category_new">New</string>
-    //new is reserved by Java
+    <string name="category_new">New</string> //new is reserved by Java
 
     <string name="example_work">Work</string>
     <string name="example_home">Home</string>

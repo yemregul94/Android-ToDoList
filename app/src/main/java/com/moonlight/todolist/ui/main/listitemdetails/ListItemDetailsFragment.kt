@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.R.style
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
+import com.google.android.material.snackbar.Snackbar
 import com.moonlight.todolist.R
 import com.moonlight.todolist.data.model.ToDoListItem
 import com.moonlight.todolist.data.model.ToDoSubTask
@@ -343,6 +344,11 @@ class ListItemDetailsFragment : Fragment() {
         }
     }
 
+    private fun undoDelete(position: Int, subTask: ToDoSubTask){
+        toDoSubTasks.add(position, subTask)
+        adapter.notifyItemInserted(position)
+    }
+
     private fun toggleComplete(position: Int){
         toDoSubTasks[position] = toDoSubTasks[position].copy(completed = !toDoSubTasks[position].completed)
         adapter.notifyItemChanged(position)
@@ -367,7 +373,15 @@ class ListItemDetailsFragment : Fragment() {
                     toggleComplete(position)
                 }
                 else if(direction == RIGHT){
+                    val deletedSubTask = toDoSubTasks[position]
                     deleteSubTask(position)
+
+                    Snackbar.make(viewHolder.itemView, getString(R.string.removed, deletedSubTask.title), Snackbar.LENGTH_LONG)
+                        .setAction(getString(R.string.undo)) {
+                            undoDelete(position, deletedSubTask)
+                            binding.rvSubTasks.postDelayed({ binding.rvSubTasks.scrollToPosition(position) }, 100)
+                        }
+                        .show()
                 }
             }
 

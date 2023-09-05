@@ -1,5 +1,6 @@
 package com.moonlight.todolist.ui.main.dashboard
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -52,6 +53,12 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.ViewHolder>() {
         val listItem = differ.currentList[position]
         val bind = holder.binding
         bind.toDoList = listItem
+
+        if(listItem.completed){
+            bind.tvListTitle.paintFlags = bind.tvListTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        }else{
+            bind.tvListTitle.paintFlags = 0
+        }
 
         val colorID = when (listItem.color) {
             "color1" -> R.color.color1

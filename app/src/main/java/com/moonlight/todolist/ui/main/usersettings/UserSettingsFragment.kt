@@ -264,6 +264,11 @@ class UserSettingsFragment : Fragment() {
         adapter.notifyItemRemoved(position)
     }
 
+    private fun undoDelete(position: Int, category: String){
+        categoryList.add(position, category)
+        adapter.notifyItemInserted(position)
+    }
+
     private fun setOnRecyclerViewItemSwipedListener() {
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, ItemTouchHelper.RIGHT) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -281,7 +286,15 @@ class UserSettingsFragment : Fragment() {
                 val position = viewHolder.adapterPosition
 
                 if(direction == ItemTouchHelper.RIGHT){
+                    val deletedCategory = categoryList[position]
                     deleteCategory(position)
+
+                    Snackbar.make(viewHolder.itemView, getString(R.string.removed, deletedCategory), Snackbar.LENGTH_LONG)
+                        .setAction(getString(R.string.undo)) {
+                            undoDelete(position, deletedCategory)
+                            binding.rvCategories.postDelayed({ binding.rvCategories.scrollToPosition(position) }, 100)
+                        }
+                        .show()
                 }
             }
 

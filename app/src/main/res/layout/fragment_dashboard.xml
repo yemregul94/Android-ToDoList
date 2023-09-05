@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu"
+        app:titleTextColor="@color/black"
         app:popupTheme="@style/MyPopupTheme" />
 
     <androidx.appcompat.widget.SearchView
