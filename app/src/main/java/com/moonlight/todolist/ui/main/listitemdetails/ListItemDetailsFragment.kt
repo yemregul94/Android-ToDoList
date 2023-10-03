@@ -61,20 +61,20 @@ class ListItemDetailsFragment : Fragment() {
         _binding = FragmentListItemDetailsBinding.inflate(inflater, container, false)
 
         val bundle: ListItemDetailsFragmentArgs by navArgs()
-        val listItems = bundle.toDoListItem
+        val listItem = bundle.toDoListItem
         val subTasks = bundle.toDoListItem?.subTaskList
 
-        if(listItems?.id != null){
+        if(listItem?.id != null){
             binding.btnUpdate.visibility = View.VISIBLE
             binding.btnSave.visibility = View.INVISIBLE
-            selectedPriority = listItems.priority
-            binding.updateTime = formatTime(listItems.updateTime)
-            selectedColor = listItems.color
-            selectedCategory = listItems.category
+            selectedPriority = listItem.priority
+            binding.updateTime = formatTime(listItem.updateTime)
+            selectedColor = listItem.color
+            selectedCategory = listItem.category
         }
         else {
             binding.btnSave.isEnabled = false
-            binding.layoutTitle.error = getString(R.string.alert_empty_title)
+            binding.txtTitle.error = getString(R.string.alert_empty_title)
         }
 
         if(subTasks != null){
@@ -82,8 +82,8 @@ class ListItemDetailsFragment : Fragment() {
         }
 
         binding.apply {
-            toDoListItem = listItems
-            checkStatus = listItems?.completed
+            toDoListItem = listItem
+            checkStatus = listItem?.completed
 
             btnSave.setOnClickListener { saveListItem() }
 
@@ -106,11 +106,13 @@ class ListItemDetailsFragment : Fragment() {
                 if(it.toString().isEmpty()){
                     binding.btnSave.isEnabled = false
                     binding.btnUpdate.isEnabled = false
+                    layoutTitle.isErrorEnabled = true
                     layoutTitle.error = getString(R.string.alert_empty_title)
                 }
                 else {
                     binding.btnSave.isEnabled = true
                     binding.btnUpdate.isEnabled = true
+                    layoutTitle.isErrorEnabled = false
                     layoutTitle.error = null
                 }
             }
