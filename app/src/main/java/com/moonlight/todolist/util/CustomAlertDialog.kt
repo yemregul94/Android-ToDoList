@@ -35,6 +35,7 @@ class CustomAlertDialog {
             "category" -> {
                 layoutSecond.visibility = View.GONE
                 itemCheck.visibility = View.GONE
+                itemTextFirst.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
 
                 if(inputString == null){
                     builder.setTitle(activity.baseContext.getString(R.string.add_new_category))
@@ -50,6 +51,7 @@ class CustomAlertDialog {
             }
             "subTask" -> {
                 layoutSecond.visibility = View.GONE
+                itemTextFirst.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
 
                 if(inputString == null || inputCheck == null){
                     builder.setTitle(activity.baseContext.getString(R.string.add_new_sub_task))
