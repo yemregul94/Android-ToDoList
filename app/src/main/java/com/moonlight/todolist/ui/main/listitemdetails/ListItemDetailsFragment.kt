@@ -228,6 +228,7 @@ class ListItemDetailsFragment : Fragment() {
             toDoSubTasks,
             selectedColor,
             binding.checkFavoriteDetails.isChecked,
+            archived = false,
             Calendar.getInstance(Locale.ENGLISH).time.toString(),
             Calendar.getInstance(Locale.ENGLISH).time.toString()
         )
@@ -247,6 +248,7 @@ class ListItemDetailsFragment : Fragment() {
             toDoSubTasks,
             selectedColor,
             binding.checkFavoriteDetails.isChecked,
+            bundle.toDoListItem!!.archived,
             bundle.toDoListItem!!.createTime,
             Calendar.getInstance(Locale.ENGLISH).time.toString()
         )

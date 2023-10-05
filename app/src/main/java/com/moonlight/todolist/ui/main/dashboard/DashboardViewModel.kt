@@ -26,6 +26,7 @@ class DashboardViewModel @Inject constructor(private var trepo: ToDoRepository, 
     var selectedCategoryIndex: Int = 0
     var hideCompleted: Boolean = false
     var filterFavorites: Boolean = false
+    var showArchived: Boolean = false
     var searchQuery: String = ""
     var sortCriteria: String = "last updated"
     var priority: Int = -1
@@ -38,6 +39,11 @@ class DashboardViewModel @Inject constructor(private var trepo: ToDoRepository, 
 
     private fun loadListItems(){
         _toDoListsItem = trepo.getListItems(uid)
+    }
+
+    fun duplicateListItem(list: ToDoListItem, copyString: String) {
+        list.title = "${list.title} $copyString"
+        trepo.newListItem(list, uid)
     }
 
     fun deleteListItems(listID: String){
@@ -59,8 +65,13 @@ class DashboardViewModel @Inject constructor(private var trepo: ToDoRepository, 
         trepo.updateListItem(newList, uid)
     }
 
+    fun toggleArchive(list: ToDoListItem){
+        val newList = list.copy(archived = !list.archived)
+        trepo.updateListItem(newList, uid)
+    }
+
     fun undoDelete(list: ToDoListItem){
-        trepo.newListItem(list, uid)
+        trepo.updateListItem(list, uid)
     }
 
     fun applyFilters() {
@@ -76,6 +87,9 @@ class DashboardViewModel @Inject constructor(private var trepo: ToDoRepository, 
             }
             if(filterFavorites){
                 filterList = filterList?.filter { it.favorite }
+            }
+            if(!showArchived){
+                filterList = filterList?.filterNot { it.archived }
             }
             if (selectedCategoryIndex != 0){
                 filterList = filterList?.filter {

@@ -12,6 +12,7 @@ data class ToDoListItem(
     var subTaskList: List<ToDoSubTask>? = null,
     var color: String = "",
     var favorite: Boolean = false,
+    var archived: Boolean = false,
 
     var createTime: String = "",
     var updateTime: String = ""

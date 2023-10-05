@@ -148,6 +148,12 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         adapter.onFavClick = { position ->
             toggleFavorite(adapter.differ.currentList[position])
         }
+        adapter.onDuplicateClick = { position ->
+            duplicateListItem(adapter.differ.currentList[position])
+        }
+        adapter.onArchiveClick = { position ->
+            toggleArchive(adapter.differ.currentList[position])
+        }
     }
 
     private fun newListItem() {
@@ -194,6 +200,10 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         }).attachToRecyclerView(binding.rvLists)
     }
 
+    private fun duplicateListItem(listItem: ToDoListItem) {
+        viewModel.duplicateListItem(listItem, getString(R.string.copy))
+    }
+
     private fun deleteListItem(listID: String){
         viewModel.deleteListItems(listID)
     }
@@ -209,6 +219,10 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun toggleFavorite(listItem: ToDoListItem){
         viewModel.toggleFavorite(listItem)
+    }
+
+    private fun toggleArchive(listItem: ToDoListItem){
+        viewModel.toggleArchive(listItem)
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -232,6 +246,9 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                 menuInflater.inflate(R.menu.menu, menu)
                 menu[1].subMenu?.getItem(SORT_LIST.indexOf(viewModel.sortCriteria))?.isChecked = true
                 menu[0].subMenu?.getItem(viewModel.priority+2)?.isChecked = true
+                menu.findItem(R.id.menu_filter_fav).isChecked = viewModel.filterFavorites
+                menu.findItem(R.id.menu_filter_uncomplete).isChecked = viewModel.hideCompleted
+                menu.findItem(R.id.menu_filter_archive).isChecked = viewModel.showArchived
             }
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 menuItem.isChecked = !menuItem.isChecked
@@ -248,6 +265,10 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
                     R.id.menu_filter_uncomplete -> {
                         viewModel.hideCompleted = menuItem.isChecked
+                        viewModel.applyFilters()
+                    }
+                    R.id.menu_filter_archive -> {
+                        viewModel.showArchived = menuItem.isChecked
                         viewModel.applyFilters()
                     }
                     R.id.menu_low -> {
@@ -279,7 +300,6 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
                     R.id.menu_title -> {
                         saveSortChoice("title")
-
                     }
                     R.id.menu_title_desc -> {
                         saveSortChoice("title reverse")

@@ -139,6 +139,12 @@
     <string name="menu_a_z">A-Z</string>
     <string name="menu_z_a">Z-A</string>
 
+    //Popup Menu
+    <string name="copy">Kopya</string>
+    <string name="duplicate">Çoğalt</string>
+    <string name="archive">Arşivle</string>
+    <string name="show_archived">Arşivlenenleri Göster</string>
+
     //Auth Common
     <string name="email">Email</string>
     <string name="password">Şifre</string>

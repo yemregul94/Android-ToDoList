@@ -53,9 +53,10 @@ class MainActivity : AppCompatActivity() {
 
                         val listItem = ToDoListItem("", getString(R.string.welcome_title), getString(R.string.welcome_desc), 3, false, getString(R.string.example_home),
                             listOf(ToDoSubTask("", getString(R.string.welcome_sub_title1), false), ToDoSubTask("", getString(R.string.welcome_sub_title2), true)),
-                            "color4", false,
-                            Calendar.getInstance(Locale.ENGLISH).time.toString(),
-                            Calendar.getInstance(Locale.ENGLISH).time.toString())
+                            "color4", favorite = false, archived = false,
+                            createTime = Calendar.getInstance(Locale.ENGLISH).time.toString(),
+                            updateTime = Calendar.getInstance(Locale.ENGLISH).time.toString()
+                        )
                         mainViewModel.createFirstListItem(listItem, it.uid)
                     }
                     else {

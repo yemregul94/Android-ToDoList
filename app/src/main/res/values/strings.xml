@@ -137,6 +137,12 @@
     <string name="menu_a_z">A-Z</string>
     <string name="menu_z_a">Z-A</string>
 
+    //Popup Menu
+    <string name="copy">Copy</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="archive">Archive</string>
+    <string name="show_archived">Show Archived</string>
+
     //Auth Common
     <string name="email">Email</string>
     <string name="password">Password</string>

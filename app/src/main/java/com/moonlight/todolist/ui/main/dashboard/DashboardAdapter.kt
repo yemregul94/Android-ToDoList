@@ -3,6 +3,7 @@ package com.moonlight.todolist.ui.main.dashboard
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
@@ -21,6 +22,8 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.ViewHolder>() {
     var onCompleteClick: ((Int) -> Unit)? = null
     var onFavClick: ((Int) -> Unit)? = null
     var onSubTaskCompleteClick: ((Int, Int) -> Unit)? = null
+    var onDuplicateClick: ((Int) -> Unit)? = null
+    var onArchiveClick: ((Int) -> Unit)? = null
 
     private var expandStatusList: MutableList<ToDoListExpand> = mutableListOf()
 
@@ -92,6 +95,28 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.ViewHolder>() {
         bind.layoutSubTask.setOnClickListener {
             val nav = DashboardFragmentDirections.actionGoToListDetails(listItem)
             Navigation.findNavController(it).navigate(nav)
+        }
+
+        bind.layoutSubTask.setOnLongClickListener {
+            val popupMenu = PopupMenu(it.context, it)
+            popupMenu.inflate(R.menu.menu_popup)
+            popupMenu.menu.findItem(R.id.menu_archive).isChecked = listItem.archived
+
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_duplicate -> {
+                        onDuplicateClick?.invoke(holder.adapterPosition)
+                        true
+                    }
+                    R.id.menu_archive -> {
+                        onArchiveClick?.invoke(holder.adapterPosition)
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.show()
+            true
         }
 
         bind.checkComplete.setOnClickListener {
