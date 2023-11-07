@@ -15,5 +15,6 @@ data class ToDoListItem(
     var archived: Boolean = false,
 
     var createTime: String = "",
-    var updateTime: String = ""
+    var updateTime: String = "",
+    var alarmTime: String = ""
 ) : Serializable

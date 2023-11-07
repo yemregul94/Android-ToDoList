@@ -52,6 +52,9 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                 newListItem()
             }
             searchList.setOnQueryTextListener(this@DashboardFragment)
+            fabAlarmm.setOnClickListener {
+                goToAlarms()
+            }
         }
 
         loadListItems()
@@ -62,6 +65,11 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         addMenu()
 
         return binding.root
+    }
+
+    private fun goToAlarms(){
+        val nav = DashboardFragmentDirections.actionDashboardToAlarmList()
+        Navigation.findNavController(requireView()).navigate(nav)
     }
 
     private fun observeCategoryChips() {

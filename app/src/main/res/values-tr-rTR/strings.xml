@@ -41,6 +41,7 @@
     <string name="hint_title">Başlık</string>
     <string name="hint_desc">Açıklama</string>
     <string name="alert_empty_title">Başlık Boş Olamaz</string>
+    <string name="alarm_time">Alarm: %s</string>
 
     <string name="list_item_updated"><b>Güncellendi:</b> %s</string>
     <string name="list_item_created"><b>Oluşturuldu:</b> %s</string>
@@ -125,6 +126,12 @@
     <string name="cannot_undone">\nBu işlem geri alınamaz. \nEmin misiniz?</string>
     <string name="category_empty">Kategori Adı boş olamaz</string>
 
+    //Alarms
+    <string name="alarm">Alarm</string>
+    <string name="alarms">Alarmlar</string>
+    <string name="reminder">Hatırlatma</string>
+    <string name="no_notification_permission">Bildirim İzni Verilmedi</string>
+    <string name="no_alarm">Yok</string>
 
     //Menu
     <string name="menu_filter_priority">Öncelik Filtrele</string>

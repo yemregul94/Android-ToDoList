@@ -71,6 +71,11 @@ class UserSettingsFragment : Fragment() {
 
             checkEditCategory.setOnCheckedChangeListener { _, isChecked -> expandStatus = isChecked }
 
+            layoutAlarms.setOnClickListener {
+                val nav = UserSettingsFragmentDirections.actionUserSettingsToAlarmList()
+                Navigation.findNavController(requireView()).navigate(nav)
+            }
+
             layoutAbout.setOnClickListener {
                 val nav = UserSettingsFragmentDirections.actionGoToAbout()
                 Navigation.findNavController(requireView()).navigate(nav)

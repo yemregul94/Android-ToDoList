@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_goToUserSettings"
             app:destination="@id/userSettingsFragment" />
+        <action
+            android:id="@+id/action_dashboardToAlarmList"
+            app:destination="@id/alarmListFragment" />
     </fragment>
     <fragment
         android:id="@+id/listDetailsFragment"
@@ -38,10 +41,22 @@
         <action
             android:id="@+id/action_goToAbout"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_userSettingsToAlarmList"
+            app:destination="@id/alarmListFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.moonlight.todolist.ui.main.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/alarmListFragment"
+        android:name="com.moonlight.todolist.ui.main.alarmList.AlarmListFragment"
+        android:label="fragment_alarm_list"
+        tools:layout="@layout/fragment_alarm_list" >
+        <action
+            android:id="@+id/action_alarmToDetails"
+            app:destination="@id/listDetailsFragment" />
+    </fragment>
 </navigation>

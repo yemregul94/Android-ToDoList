@@ -92,12 +92,12 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.ViewHolder>() {
             bind.expandStatus = false
         }
 
-        bind.layoutSubTask.setOnClickListener {
+        bind.layoutToDoTask.setOnClickListener {
             val nav = DashboardFragmentDirections.actionGoToListDetails(listItem)
             Navigation.findNavController(it).navigate(nav)
         }
 
-        bind.layoutSubTask.setOnLongClickListener {
+        bind.layoutToDoTask.setOnLongClickListener {
             val popupMenu = PopupMenu(it.context, it)
             popupMenu.inflate(R.menu.menu_popup)
             popupMenu.menu.findItem(R.id.menu_archive).isChecked = listItem.archived

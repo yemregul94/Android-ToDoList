@@ -19,6 +19,11 @@ class MainViewModel @Inject constructor(var trepo: ToDoRepository, var urepo: Us
     val theme: LiveData<String> get() = _theme
     private var _theme: MutableLiveData<String> = MutableLiveData()
 
+    val toDoListsItem: LiveData<List<ToDoListItem>> get() = _toDoListsItem
+    private var _toDoListsItem: MutableLiveData<List<ToDoListItem>> = MutableLiveData()
+
+    private var uid = ""
+
     init {
         getTheme()
     }
@@ -31,7 +36,7 @@ class MainViewModel @Inject constructor(var trepo: ToDoRepository, var urepo: Us
         _user = urepo.getUserData(uid)
     }
 
-    fun createFirstListItem(listItem:ToDoListItem, uid: String?){
+    fun createFirstListItem(listItem: ToDoListItem, uid: String?){
         trepo.newListItem(listItem, uid)
     }
 
@@ -43,5 +48,18 @@ class MainViewModel @Inject constructor(var trepo: ToDoRepository, var urepo: Us
     fun getTheme(): String? {
         _theme.value = urepo.getTheme()
         return urepo.getTheme()
+    }
+
+    fun setUID(uid: String){
+        this.uid = uid
+        loadListItems()
+    }
+
+    private fun loadListItems(){
+        _toDoListsItem = trepo.getListItems(uid)
+    }
+
+    fun removeAlarm(listItem: ToDoListItem){
+        trepo.updateListItem(listItem.copy(alarmTime = ""), uid)
     }
 }

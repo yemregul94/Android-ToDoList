@@ -16,13 +16,15 @@
     <color name="red">#cf6679</color>
     <color name="blue">#3C6496</color>
 
+    <color name="alarm_red">@color/priority_top</color>
+    <color name="alarm_green">@color/priority_low</color>
+
     <color name="color1">#FF4848</color>
     <color name="color2">#80BEFF</color>
     <color name="color3">#7BFF7B</color>
     <color name="color4">#FDE77A</color>
     <color name="color5">#DD8FFF</color>
     <color name="color6">#F79E5A</color>
-
 
     <color name="priority_low">#80FF80</color>
     <color name="priority_medium">#EFF874</color>

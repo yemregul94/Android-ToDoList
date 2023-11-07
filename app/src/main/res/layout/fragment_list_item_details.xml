@@ -11,6 +11,9 @@
             name="updateTime"
             type="String" />
         <variable
+            name="alarmTime"
+            type="String" />
+        <variable
             name="checkStatus"
             type="Boolean" />
         <import type="android.view.View" />
@@ -390,6 +393,68 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_alarm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/shape_details_layout_bg"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_colors">
+
+                    <TextView
+                        android:id="@+id/tv_alarm"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="@{@string/alarm_time(alarmTime)}"
+                        android:textColor="@color/main_text"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/image_edit_alarm"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/alarm_time" />
+
+                    <ImageView
+                        android:id="@+id/image_add_alarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_add_alarm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/theme_primary"/>
+
+                    <ImageView
+                        android:id="@+id/image_delete_alarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_delete"
+                        app:tint="@color/theme_primary" />
+
+                    <ImageView
+                        android:id="@+id/image_edit_alarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/image_delete_alarm"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_edit_alarm"
+                        app:tint="@color/theme_primary" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_sub_task"
                     android:layout_width="match_parent"
@@ -406,7 +471,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/btn_return"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_colors"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_alarm"
                     app:layout_constraintVertical_bias="0.0">
 
                     <TextView
@@ -445,7 +510,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
                 <Button
                     android:id="@+id/btn_return"
                     android:layout_width="0dp"
@@ -459,18 +523,6 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
-                    android:id="@+id/btn_save"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="64dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/save"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_update"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/btn_return" />
-
-                <Button
                     android:id="@+id/btn_update"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -480,6 +532,18 @@
                     android:text="@string/update"
                     android:textColor="@color/main_background"
                     android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_update"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btn_return" />
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="64dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/save"
                     app:layout_constraintBottom_toTopOf="@+id/tv_update"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btn_return" />

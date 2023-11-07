@@ -1,7 +1,10 @@
 package com.moonlight.todolist.ui.main.listitemdetails
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.graphics.Canvas
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,8 +37,13 @@ import com.moonlight.todolist.databinding.FragmentListItemDetailsBinding
 import com.moonlight.todolist.ui.auth.AuthViewModel
 import com.moonlight.todolist.ui.main.MainViewModel
 import com.moonlight.todolist.util.CustomAlertDialog
+import com.moonlight.todolist.util.DATE_FORMAT
 import com.moonlight.todolist.util.SwipeDecorator
+import com.moonlight.todolist.util.cancelAlarm
+import com.moonlight.todolist.util.formatTime
+import com.moonlight.todolist.util.setAlarm
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Collections
 import java.util.Locale
@@ -55,6 +63,7 @@ class ListItemDetailsFragment : Fragment() {
     private var selectedPriority = 1
     private var selectedColor = ""
     private var selectedCategory = ""
+    private var alarmDateTime = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -75,6 +84,14 @@ class ListItemDetailsFragment : Fragment() {
         else {
             binding.btnSave.isEnabled = false
             binding.txtTitle.error = getString(R.string.alert_empty_title)
+        }
+
+        if(listItem?.alarmTime.isNullOrEmpty()){
+            binding.alarmTime = getString(R.string.no_alarm)
+        }
+        else {
+            alarmDateTime = listItem?.alarmTime!!
+            binding.alarmTime = formatTime(alarmDateTime)
         }
 
         if(subTasks != null){
@@ -102,6 +119,15 @@ class ListItemDetailsFragment : Fragment() {
                 Navigation.findNavController(requireView()).navigate(nav)
             }
 
+            imageDeleteAlarm.setOnClickListener {
+                alarmDateTime = ""
+                alarmTime = getString(R.string.no_alarm)
+                checkAlarm()
+            }
+
+            imageAddAlarm.setOnClickListener { pickDateTime(null) }
+            imageEditAlarm.setOnClickListener { pickDateTime(alarmDateTime) }
+
             txtTitle.addTextChangedListener {
                 if(it.toString().isEmpty()){
                     binding.btnSave.isEnabled = false
@@ -124,8 +150,50 @@ class ListItemDetailsFragment : Fragment() {
         loadCategories()
         observeCategoryChips()
         setOnRecyclerViewItemSwipedListener()
+        checkAlarm()
 
         return binding.root
+    }
+
+    private fun pickDateTime(time: String?) {
+
+        val currentDateTime = Calendar.getInstance()
+        if(time != null){
+            val inputFormat = SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH)
+            currentDateTime.time = inputFormat.parse(time)!!
+        }
+
+        val startYear = currentDateTime.get(Calendar.YEAR)
+        val startMonth = currentDateTime.get(Calendar.MONTH)
+        val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
+        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
+        val startMinute = currentDateTime.get(Calendar.MINUTE)
+
+        val datePicker = DatePickerDialog(requireContext(), R.style.DatePickerTheme, { _, year, month, day ->
+            TimePickerDialog(requireContext(), R.style.TimePickerTheme,
+                { _, hour, minute ->
+                    val pickedDateTime = Calendar.getInstance()
+                    pickedDateTime.set(year, month, day, hour, minute)
+                    alarmDateTime = pickedDateTime.time.toString()
+                    binding.alarmTime = formatTime(alarmDateTime)
+                    checkAlarm()
+                }, startHour, startMinute, DateFormat.is24HourFormat(requireContext())).show()
+        }, startYear, startMonth, startDay)
+        datePicker.datePicker.minDate = Calendar.getInstance().timeInMillis
+        datePicker.show()
+    }
+
+    private fun checkAlarm(){
+        if(alarmDateTime.isEmpty()){
+            binding.imageAddAlarm.visibility = View.VISIBLE
+            binding.imageDeleteAlarm.visibility = View.GONE
+            binding.imageEditAlarm.visibility = View.GONE
+        }
+        else {
+            binding.imageAddAlarm.visibility = View.GONE
+            binding.imageDeleteAlarm.visibility = View.VISIBLE
+            binding.imageEditAlarm.visibility = View.VISIBLE
+        }
     }
 
     private fun newCategory() {
@@ -201,9 +269,6 @@ class ListItemDetailsFragment : Fragment() {
         }
     }
 
-    private fun formatTime(time: String) : String{
-        return viewModel.formatTime(time)
-    }
 
     private fun setAdapter(){
         adapter.differ.submitList(toDoSubTasks)
@@ -230,7 +295,8 @@ class ListItemDetailsFragment : Fragment() {
             binding.checkFavoriteDetails.isChecked,
             archived = false,
             Calendar.getInstance(Locale.ENGLISH).time.toString(),
-            Calendar.getInstance(Locale.ENGLISH).time.toString()
+            Calendar.getInstance(Locale.ENGLISH).time.toString(),
+            alarmDateTime
         )
         newListItem(newListItem, authViewModel.uid)
         Toast.makeText(requireContext(), getString(R.string.list_item_created, binding.txtTitle.text.toString()), Toast.LENGTH_LONG).show()
@@ -239,7 +305,7 @@ class ListItemDetailsFragment : Fragment() {
     }
 
     private fun updateListItem(bundle: ListItemDetailsFragmentArgs){
-        val newListItem = ToDoListItem(bundle.toDoListItem!!.id,
+        val newListItem = ToDoListItem(bundle.toDoListItem?.id,
             binding.txtTitle.text.toString(),
             binding.txtDesc.text.toString(),
             selectedPriority,
@@ -250,12 +316,28 @@ class ListItemDetailsFragment : Fragment() {
             binding.checkFavoriteDetails.isChecked,
             bundle.toDoListItem!!.archived,
             bundle.toDoListItem!!.createTime,
-            Calendar.getInstance(Locale.ENGLISH).time.toString()
+            Calendar.getInstance(Locale.ENGLISH).time.toString(),
+            alarmDateTime
         )
         updateListItem(newListItem, authViewModel.uid)
+        setAlert(newListItem)
         Toast.makeText(requireContext(), getString(R.string.list_item_updated, binding.txtTitle.text.toString()), Toast.LENGTH_LONG).show()
 
         returnToDashboard()
+    }
+
+    private fun setAlert(newListItem: ToDoListItem) {
+
+        if(newListItem.alarmTime.isNotEmpty()){
+            setAlarm(requireContext(), newListItem)
+        }
+        else {
+            cancelAlert(newListItem)
+        }
+    }
+
+    private fun cancelAlert(newListItem: ToDoListItem){
+        cancelAlarm(requireContext(), newListItem)
     }
 
     private fun setPriority(){

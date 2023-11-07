@@ -40,7 +40,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_sub_task"
+            android:id="@+id/layout_to_do_task"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_corner_8dp"

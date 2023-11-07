@@ -1,11 +1,17 @@
 package com.moonlight.todolist.ui.main
 
+import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
 import com.moonlight.todolist.R
 import com.moonlight.todolist.data.model.ToDoListItem
 import com.moonlight.todolist.data.model.ToDoSubTask
@@ -13,6 +19,7 @@ import com.moonlight.todolist.data.model.UserData
 import com.moonlight.todolist.databinding.ActivityMainBinding
 import com.moonlight.todolist.ui.auth.AuthActivity
 import com.moonlight.todolist.ui.auth.AuthViewModel
+import com.moonlight.todolist.util.setAlarm
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 import java.util.Locale
@@ -33,6 +40,31 @@ class MainActivity : AppCompatActivity() {
 
         observeLogin()
         getThemeMode()
+
+        createNotificationChannel()
+        getNotificationPermission()
+    }
+
+    private fun getNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 100)
+        }
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "ToDoListChannel"
+            val descriptionText = "ToDoListChannelDesc"
+            val importance = NotificationManager.IMPORTANCE_HIGH
+
+            val channel = NotificationChannel("todolist", name, importance)
+
+            channel.description = descriptionText
+
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     private fun observeLogin(){
@@ -63,11 +95,26 @@ class MainActivity : AppCompatActivity() {
                         mainViewModel.user.observe(this){ userData ->
                             if (userData != null) {
                                 //Toast.makeText(this, getString(R.string.welcome_re_login, userData.userName), Toast.LENGTH_LONG).show()
+                                checkAlarms()
                             }
                         }
                     }
                 }
             }
+        }
+    }
+
+    private fun checkAlarms() {
+        mainViewModel.setUID(authViewModel.uid!!)
+
+        mainViewModel.toDoListsItem.observe(this){
+            val list = it.filter { it.alarmTime.isNotEmpty() }
+            list.forEach {
+                if(it.alarmTime.isNotEmpty()){
+                    setAlarm(this, it)
+                }
+            }
+            mainViewModel.toDoListsItem.removeObservers(this)
         }
     }
 

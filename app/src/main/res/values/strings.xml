@@ -39,6 +39,7 @@
     <string name="hint_title">Title</string>
     <string name="hint_desc">Description</string>
     <string name="alert_empty_title">Title cannot be empty</string>
+    <string name="alarm_time">Alarm: %s</string>
 
     <string name="list_item_updated"><b>Updated:</b> %s</string>
     <string name="list_item_created"><b>Created:</b> %s</string>
@@ -112,7 +113,6 @@
     <string name="edit_sub_task">Edit Sub Task</string>
     <string name="sub_task_empty">Sub Task cannot be empty</string>
 
-
     //Alert Settings
     <string name="edit_user_info">Edit User Information</string>
     <string name="input_email">Input Email Address</string>
@@ -123,6 +123,13 @@
     <string name="input_valid_password">Password must be at least 6 characters</string>
     <string name="cannot_undone">\nThis action cannot be undone. \nAre you sure?</string>
     <string name="category_empty">Category Name cannot be empty</string>
+
+    //Alarms
+    <string name="alarm">Alarm</string>
+    <string name="alarms">Alarms</string>
+    <string name="reminder">Reminder</string>
+    <string name="no_notification_permission">Notification Permission not granted</string>
+    <string name="no_alarm">None</string>
 
     //Menu
     <string name="menu_filter_priority">Filter Priority</string>

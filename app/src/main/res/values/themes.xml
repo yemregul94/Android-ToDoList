@@ -34,4 +34,20 @@
         <item name="chipMinHeight">24dp</item>
         <item name="chipMinTouchTargetSize">32dp</item>
     </style>
+
+    <style name="DatePickerTheme">
+        <item name="android:textColorSecondary">@color/theme_secondary</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="TimePickerTheme">
+        <item name="android:timePickerStyle">@style/MyTimePickerStyle</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="colorAccent">@color/theme_primary</item>
+        <item name="android:textColorSecondary">@color/theme_secondary</item>
+    </style>
+
+    <style name="MyTimePickerStyle" parent="@android:style/Widget.Material.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
+    </style>
 </resources>

@@ -16,6 +16,9 @@
     <color name="red">#b00020</color>
     <color name="blue">#01518F</color>
 
+    <color name="alarm_red">@color/priority_top</color>
+    <color name="alarm_green">@color/priority_low</color>
+
     <color name="color1">#FF2727</color>
     <color name="color2">#1576DD</color>
     <color name="color3">#3AB51E</color>
