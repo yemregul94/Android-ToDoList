@@ -46,5 +46,6 @@
     <color name="main_text">#FFFFFF</color>
 
     <color name="grey_background">#121212</color>
+    <color name="bottom_nav_background">#121212</color>
 
 </resources>

@@ -128,8 +128,10 @@
     <string name="alarm">Alarm</string>
     <string name="alarms">Alarms</string>
     <string name="reminder">Reminder</string>
-    <string name="no_notification_permission">Notification Permission not granted</string>
+    <string name="notification_permission_not_granted">Notification Permission not granted, you can allow in Phone Settings</string>
+    <string name="notification_permission_granted">Notification Permission are granted</string>
     <string name="no_alarm">None</string>
+    <string name="open_settings">Open Settings</string>
 
     //Menu
     <string name="menu_filter_priority">Filter Priority</string>
@@ -149,6 +151,10 @@
     <string name="duplicate">Duplicate</string>
     <string name="archive">Archive</string>
     <string name="show_archived">Show Archived</string>
+
+    //Bottom Menu
+    <string name="home">Home</string>
+    <string name="archived">Archived</string>
 
     //Auth Common
     <string name="email">Email</string>
@@ -189,6 +195,7 @@
     <string name="system">System Default</string>
     <string name="about_app">About Application</string>
     <string name="go_to_tutorial">Relaunch Tutorial</string>
+    <string name="check_notification_permission">Check Notification Permissions</string>
 
     <string name="save_guest_success">Guest Account Saved</string>
     <string name="change_email_success">Email Address Changed</string>

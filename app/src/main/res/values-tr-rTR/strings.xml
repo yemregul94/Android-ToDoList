@@ -130,8 +130,10 @@
     <string name="alarm">Alarm</string>
     <string name="alarms">Alarmlar</string>
     <string name="reminder">Hatırlatma</string>
-    <string name="no_notification_permission">Bildirim İzni Verilmedi</string>
+    <string name="notification_permission_not_granted">Bildirim izni verilmedi, Telefon Ayarlarından verebilirsiniz.</string>
+    <string name="notification_permission_granted">Bildirim izni verildi</string>
     <string name="no_alarm">Yok</string>
+    <string name="open_settings">Ayarları Aç</string>
 
     //Menu
     <string name="menu_filter_priority">Öncelik Filtrele</string>
@@ -151,6 +153,10 @@
     <string name="duplicate">Çoğalt</string>
     <string name="archive">Arşivle</string>
     <string name="show_archived">Arşivlenenleri Göster</string>
+
+    //Bottom Menu
+    <string name="home">Giriş</string>
+    <string name="archived">Arşiv</string>
 
     //Auth Common
     <string name="email">Email</string>
@@ -191,6 +197,7 @@
     <string name="system">Sistem Tercihi</string>
     <string name="about_app">Uygulama Hakkında</string>
     <string name="go_to_tutorial">Rehberi Tekrar Aç</string>
+    <string name="check_notification_permission">Bildirim İzinlerini Kontrol Et</string>
 
     <string name="save_guest_success">Misafir Hesap Kaydedildi</string>
     <string name="change_email_success">Email Adresi Değiştirildi</string>

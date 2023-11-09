@@ -2,7 +2,12 @@ package com.moonlight.todolist.ui.main.dashboard
 
 import android.graphics.Canvas
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
@@ -14,7 +19,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.*
+import androidx.recyclerview.widget.ItemTouchHelper.LEFT
+import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
+import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.R.style
@@ -28,6 +35,8 @@ import com.moonlight.todolist.ui.auth.AuthViewModel
 import com.moonlight.todolist.ui.main.MainViewModel
 import com.moonlight.todolist.util.SORT_LIST
 import com.moonlight.todolist.util.SwipeDecorator
+import com.moonlight.todolist.util.cancelAlarm
+import com.moonlight.todolist.util.setAlarm
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,16 +57,10 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarDashboard)
 
         binding.apply {
-            fabAddList.setOnClickListener {
-                newListItem()
-            }
+            fabAddList.setOnClickListener { newListItem() }
             searchList.setOnQueryTextListener(this@DashboardFragment)
-            fabAlarmm.setOnClickListener {
-                goToAlarms()
-            }
         }
 
-        loadListItems()
         loadSortChoice()
         observeCategoryChips()
         setAdapter()
@@ -67,9 +70,9 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         return binding.root
     }
 
-    private fun goToAlarms(){
-        val nav = DashboardFragmentDirections.actionDashboardToAlarmList()
-        Navigation.findNavController(requireView()).navigate(nav)
+    override fun onResume() {
+        super.onResume()
+        loadListItems()
     }
 
     private fun observeCategoryChips() {
@@ -94,7 +97,6 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun loadListItems() {
         viewModel.setUID(authViewModel.uid.toString())
-        mainViewModel.getUser(authViewModel.uid)
 
         mainViewModel.user.observe(viewLifecycleOwner){
             if(it != null){
@@ -179,17 +181,16 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val swipedListItem = adapter.differ.currentList[position]
-                val deletedListItem: ToDoListItem
                 if(direction == LEFT){
                     toggleComplete(swipedListItem)
                 }
                 else if(direction == RIGHT){
-                    deleteListItem(swipedListItem.id!!)
-                    deletedListItem = swipedListItem
+                    deleteListItem(swipedListItem)
 
-                    Snackbar.make(viewHolder.itemView, getString(R.string.removed, deletedListItem.title), Snackbar.LENGTH_LONG)
+                    Snackbar.make(viewHolder.itemView, getString(R.string.removed, swipedListItem.title), Snackbar.LENGTH_LONG)
                         .setAction(getString(R.string.undo)) {
-                            viewModel.undoDelete(deletedListItem)
+                            mainViewModel.undoDelete(swipedListItem)
+                            setAlarm(requireContext(), swipedListItem)
                             binding.rvLists.postDelayed({ binding.rvLists.scrollToPosition(position) }, 100)
                         }
                         .show()
@@ -209,28 +210,29 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun duplicateListItem(listItem: ToDoListItem) {
-        viewModel.duplicateListItem(listItem, getString(R.string.copy))
+        mainViewModel.duplicateListItem(listItem, getString(R.string.copy))
     }
 
-    private fun deleteListItem(listID: String){
-        viewModel.deleteListItems(listID)
+    private fun deleteListItem(listItem: ToDoListItem){
+        mainViewModel.deleteListItems(listItem.id!!)
+        cancelAlarm(requireContext(), listItem)
     }
 
     private fun toggleComplete(listItem: ToDoListItem){
-        viewModel.toggleComplete(listItem)
+        mainViewModel.toggleComplete(listItem)
     }
 
     private fun toggleSubTaskComplete(listItem: ToDoListItem, listPosition: Int, taskPosition: Int){
-        viewModel.toggleSubTaskComplete(listItem, taskPosition)
+        mainViewModel.toggleSubTaskComplete(listItem, taskPosition)
         adapter.notifyItemChanged(listPosition)
     }
 
     private fun toggleFavorite(listItem: ToDoListItem){
-        viewModel.toggleFavorite(listItem)
+        mainViewModel.toggleFavorite(listItem)
     }
 
     private fun toggleArchive(listItem: ToDoListItem){
-        viewModel.toggleArchive(listItem)
+        mainViewModel.toggleArchive(listItem)
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -256,7 +258,6 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                 menu[0].subMenu?.getItem(viewModel.priority+2)?.isChecked = true
                 menu.findItem(R.id.menu_filter_fav).isChecked = viewModel.filterFavorites
                 menu.findItem(R.id.menu_filter_uncomplete).isChecked = viewModel.hideCompleted
-                menu.findItem(R.id.menu_filter_archive).isChecked = viewModel.showArchived
             }
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 menuItem.isChecked = !menuItem.isChecked
@@ -273,10 +274,6 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
                     R.id.menu_filter_uncomplete -> {
                         viewModel.hideCompleted = menuItem.isChecked
-                        viewModel.applyFilters()
-                    }
-                    R.id.menu_filter_archive -> {
-                        viewModel.showArchived = menuItem.isChecked
                         viewModel.applyFilters()
                     }
                     R.id.menu_low -> {

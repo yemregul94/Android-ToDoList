@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_dashboardToAlarmList"
             app:destination="@id/alarmListFragment" />
+        <action
+            android:id="@+id/action_dashboardToArchived"
+            app:destination="@id/archivedItemsFragment" />
     </fragment>
     <fragment
         android:id="@+id/listDetailsFragment"
@@ -32,6 +35,10 @@
         <action
             android:id="@+id/action_goToCategorySettings"
             app:destination="@id/userSettingsFragment" />
+        <argument
+            android:name="fromNotification"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/userSettingsFragment"
@@ -44,6 +51,9 @@
         <action
             android:id="@+id/action_userSettingsToAlarmList"
             app:destination="@id/alarmListFragment" />
+        <action
+            android:id="@+id/action_userSettingsFragment_to_archivedItemsFragment"
+            app:destination="@id/archivedItemsFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -57,6 +67,15 @@
         tools:layout="@layout/fragment_alarm_list" >
         <action
             android:id="@+id/action_alarmToDetails"
+            app:destination="@id/listDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/archivedItemsFragment"
+        android:name="com.moonlight.todolist.ui.main.archivedItems.ArchivedItemsFragment"
+        android:label="fragment_archived_items"
+        tools:layout="@layout/fragment_archived_items" >
+        <action
+            android:id="@+id/action_archivedToDetails"
             app:destination="@id/listDetailsFragment" />
     </fragment>
 </navigation>

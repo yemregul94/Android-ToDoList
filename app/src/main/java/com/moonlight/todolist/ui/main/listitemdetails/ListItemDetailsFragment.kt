@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.forEachIndexed
 import androidx.core.view.get
 import androidx.core.widget.addTextChangedListener
@@ -41,6 +42,7 @@ import com.moonlight.todolist.util.DATE_FORMAT
 import com.moonlight.todolist.util.SwipeDecorator
 import com.moonlight.todolist.util.cancelAlarm
 import com.moonlight.todolist.util.formatTime
+import com.moonlight.todolist.util.getTimeInMillis
 import com.moonlight.todolist.util.setAlarm
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -76,6 +78,7 @@ class ListItemDetailsFragment : Fragment() {
         if(listItem?.id != null){
             binding.btnUpdate.visibility = View.VISIBLE
             binding.btnSave.visibility = View.INVISIBLE
+            binding.layoutAlarm.visibility = View.VISIBLE
             selectedPriority = listItem.priority
             binding.updateTime = formatTime(listItem.updateTime)
             selectedColor = listItem.color
@@ -106,7 +109,7 @@ class ListItemDetailsFragment : Fragment() {
 
             btnUpdate.setOnClickListener { updateListItem(bundle) }
 
-            btnReturn.setOnClickListener { returnToDashboard() }
+            btnReturn.setOnClickListener { returnToPreviousScreen() }
 
             imageNewSubTask.setOnClickListener { newSubTask() }
 
@@ -147,7 +150,6 @@ class ListItemDetailsFragment : Fragment() {
         setAdapter()
         setPriority()
         setColor()
-        loadCategories()
         observeCategoryChips()
         setOnRecyclerViewItemSwipedListener()
         checkAlarm()
@@ -155,10 +157,15 @@ class ListItemDetailsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadCategories()
+    }
+
     private fun pickDateTime(time: String?) {
 
         val currentDateTime = Calendar.getInstance()
-        if(time != null){
+        if(time != null && getTimeInMillis(time) > System.currentTimeMillis()){
             val inputFormat = SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH)
             currentDateTime.time = inputFormat.parse(time)!!
         }
@@ -208,7 +215,7 @@ class ListItemDetailsFragment : Fragment() {
         CustomAlertDialog().showCustomAlert(requireActivity(), "category",null, null, positiveButtonClickListener)
     }
 
-    private fun returnToDashboard(){
+    private fun returnToPreviousScreen(){
         requireActivity().onBackPressed()
     }
 
@@ -301,7 +308,7 @@ class ListItemDetailsFragment : Fragment() {
         newListItem(newListItem, authViewModel.uid)
         Toast.makeText(requireContext(), getString(R.string.list_item_created, binding.txtTitle.text.toString()), Toast.LENGTH_LONG).show()
 
-        returnToDashboard()
+        returnToPreviousScreen()
     }
 
     private fun updateListItem(bundle: ListItemDetailsFragmentArgs){
@@ -323,7 +330,7 @@ class ListItemDetailsFragment : Fragment() {
         setAlert(newListItem)
         Toast.makeText(requireContext(), getString(R.string.list_item_updated, binding.txtTitle.text.toString()), Toast.LENGTH_LONG).show()
 
-        returnToDashboard()
+        returnToPreviousScreen()
     }
 
     private fun setAlert(newListItem: ToDoListItem) {

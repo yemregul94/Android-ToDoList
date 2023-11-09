@@ -11,7 +11,7 @@ import com.moonlight.todolist.R
 import kotlin.math.abs
 
 class SwipeDecorator {
-    fun decorateSwiper(itemView: View, c:Canvas, dX:Float, recyclerView: RecyclerView){
+    fun decorateSwiper(itemView: View, c:Canvas, dX:Float, recyclerView: RecyclerView, archived: Boolean = false){
         val context = recyclerView.context
 
         //val absoluteDisplacement = abs(dX).toInt()
@@ -39,7 +39,10 @@ class SwipeDecorator {
             background.setBounds(itemView.right + dX.toInt() - backgroundCornerOffset, itemView.top, itemView.right, itemView.bottom)
             background.draw(c)
 
-            val icon = ActivityCompat.getDrawable(recyclerView.context, R.drawable.ic_check2)
+            var icon = ActivityCompat.getDrawable(recyclerView.context, R.drawable.ic_check2)
+            if(archived){
+                icon = ActivityCompat.getDrawable(recyclerView.context, R.drawable.ic_archive)
+            }
             val iconTop = (itemView.height / 2) - (icon!!.intrinsicHeight / 2) + itemView.top
             icon.setTint(context.resources.getColor(R.color.white))
 

@@ -47,7 +47,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         notificationManager = context.let { NotificationManagerCompat.from(it) }
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(context, context.getString(R.string.no_notification_permission), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context.getString(R.string.notification_permission_not_granted), Toast.LENGTH_LONG).show()
             return
         }
 

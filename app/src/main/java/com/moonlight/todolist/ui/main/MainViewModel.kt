@@ -1,5 +1,6 @@
 package com.moonlight.todolist.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -61,5 +62,38 @@ class MainViewModel @Inject constructor(var trepo: ToDoRepository, var urepo: Us
 
     fun removeAlarm(listItem: ToDoListItem){
         trepo.updateListItem(listItem.copy(alarmTime = ""), uid)
+    }
+
+    fun duplicateListItem(list: ToDoListItem, copyString: String) {
+        list.title = "${list.title} $copyString"
+        trepo.newListItem(list, uid)
+    }
+
+    fun deleteListItems(listID: String){
+        trepo.deleteListItem(listID, uid)
+    }
+
+    fun toggleComplete(list: ToDoListItem){
+        val newList = list.copy(completed = !list.completed)
+        trepo.updateListItem(newList, uid)
+    }
+
+    fun toggleSubTaskComplete(list: ToDoListItem, taskPosition: Int){
+        list.subTaskList!![taskPosition].completed = !list.subTaskList!![taskPosition].completed
+        trepo.updateListItem(list, uid)
+    }
+
+    fun toggleFavorite(list: ToDoListItem){
+        val newList = list.copy(favorite = !list.favorite)
+        trepo.updateListItem(newList, uid)
+    }
+
+    fun toggleArchive(list: ToDoListItem){
+        val newList = list.copy(archived = !list.archived)
+        trepo.updateListItem(newList, uid)
+    }
+
+    fun undoDelete(list: ToDoListItem){
+        trepo.updateListItem(list, uid)
     }
 }

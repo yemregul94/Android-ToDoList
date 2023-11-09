@@ -1,12 +1,17 @@
 package com.moonlight.todolist.ui.main.usersettings
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Canvas
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -71,6 +76,8 @@ class UserSettingsFragment : Fragment() {
 
             checkEditCategory.setOnCheckedChangeListener { _, isChecked -> expandStatus = isChecked }
 
+            layoutNotificationPermission.setOnClickListener { checkNotificationPermission() }
+
             layoutAlarms.setOnClickListener {
                 val nav = UserSettingsFragmentDirections.actionUserSettingsToAlarmList()
                 Navigation.findNavController(requireView()).navigate(nav)
@@ -99,6 +106,19 @@ class UserSettingsFragment : Fragment() {
         saveTheme()
 
         return binding.root
+    }
+
+    private fun checkNotificationPermission() {
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            Snackbar.make(requireView(), getString(R.string.notification_permission_not_granted), Snackbar.LENGTH_SHORT).setAction(R.string.open_settings) {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                intent.data = Uri.parse("package:" + requireContext().packageName)
+                requireActivity().startActivity(intent)
+            }.show()
+        }
+        else {
+            Toast.makeText(context, getString(R.string.notification_permission_granted), Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun observeAnonAccount() {

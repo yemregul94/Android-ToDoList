@@ -9,6 +9,7 @@ import com.moonlight.todolist.data.model.ToDoListItem
 fun setAlarm(context: Context, listItem: ToDoListItem) {
 
     val time = getTimeInMillis(listItem.alarmTime)
+    cancelAlarm(context, listItem)
 
     val broadcastIntent = Intent(context, AlarmReceiver::class.java)
     broadcastIntent.putExtra("listItem", listItem)
@@ -31,4 +32,5 @@ fun cancelAlarm(context: Context, listItem: ToDoListItem){
     val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
     alarmManager.cancel(pendingIntent)
+    pendingIntent.cancel()
 }

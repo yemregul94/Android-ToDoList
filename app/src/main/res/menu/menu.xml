@@ -44,9 +44,6 @@
                 <item
                     android:id="@+id/menu_filter_uncomplete"
                     android:title="@string/menu_hide_completed" />
-                <item
-                    android:id="@+id/menu_filter_archive"
-                    android:title="@string/show_archived" />
             </group>
         </menu>
     </item>
@@ -84,6 +81,7 @@
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_user"
         android:title="Profile"
+        android:visible="false"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_logout"

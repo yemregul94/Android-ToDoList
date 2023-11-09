@@ -12,6 +12,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.moonlight.todolist.R
 import com.moonlight.todolist.data.model.ToDoListItem
 import com.moonlight.todolist.data.model.ToDoSubTask
@@ -43,6 +45,15 @@ class MainActivity : AppCompatActivity() {
 
         createNotificationChannel()
         getNotificationPermission()
+        setupBottomNav()
+    }
+
+    private fun setupBottomNav() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        val bottomNavigationView = binding.bottomNavigationView
+        setupWithNavController(bottomNavigationView, navController)
     }
 
     private fun getNotificationPermission() {
@@ -78,6 +89,9 @@ class MainActivity : AppCompatActivity() {
                     finish()
                 }
                 else{
+                    mainViewModel.setUID(authViewModel.uid!!)
+                    mainViewModel.getUser(authViewModel.uid)
+
                     if(authViewModel.checkNewUser()){
                         Toast.makeText(this, getString(R.string.welcome_first_login), Toast.LENGTH_LONG).show()
                         val user = UserData("uid", "name", arrayListOf(getString(R.string.example_work), getString(R.string.example_home)))
@@ -105,8 +119,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkAlarms() {
-        mainViewModel.setUID(authViewModel.uid!!)
-
         mainViewModel.toDoListsItem.observe(this){
             val list = it.filter { it.alarmTime.isNotEmpty() }
             list.forEach {

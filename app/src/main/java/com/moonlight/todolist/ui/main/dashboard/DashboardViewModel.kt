@@ -41,39 +41,6 @@ class DashboardViewModel @Inject constructor(private var trepo: ToDoRepository, 
         _toDoListsItem = trepo.getListItems(uid)
     }
 
-    fun duplicateListItem(list: ToDoListItem, copyString: String) {
-        list.title = "${list.title} $copyString"
-        trepo.newListItem(list, uid)
-    }
-
-    fun deleteListItems(listID: String){
-        trepo.deleteListItem(listID, uid)
-    }
-
-    fun toggleComplete(list: ToDoListItem){
-        val newList = list.copy(completed = !list.completed)
-        trepo.updateListItem(newList, uid)
-    }
-
-    fun toggleSubTaskComplete(list: ToDoListItem, taskPosition: Int){
-        list.subTaskList!![taskPosition].completed = !list.subTaskList!![taskPosition].completed
-        trepo.updateListItem(list, uid)
-    }
-
-    fun toggleFavorite(list: ToDoListItem){
-        val newList = list.copy(favorite = !list.favorite)
-        trepo.updateListItem(newList, uid)
-    }
-
-    fun toggleArchive(list: ToDoListItem){
-        val newList = list.copy(archived = !list.archived)
-        trepo.updateListItem(newList, uid)
-    }
-
-    fun undoDelete(list: ToDoListItem){
-        trepo.updateListItem(list, uid)
-    }
-
     fun applyFilters() {
 
         val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH)
