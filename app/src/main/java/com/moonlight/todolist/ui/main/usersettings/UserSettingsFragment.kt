@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Canvas
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -97,6 +98,7 @@ class UserSettingsFragment : Fragment() {
             layoutLogout.setOnClickListener { authViewModel.signOut() }
         }
 
+        checkAndroidVersion()
         observeCategories()
         observeErrorAndSuccess()
         observeAnonAccount()
@@ -106,6 +108,12 @@ class UserSettingsFragment : Fragment() {
         saveTheme()
 
         return binding.root
+    }
+
+    private fun checkAndroidVersion(){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            binding.layoutNotificationPermission.visibility = View.GONE
+        }
     }
 
     private fun checkNotificationPermission() {
