@@ -190,7 +190,9 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     Snackbar.make(viewHolder.itemView, getString(R.string.removed, swipedListItem.title), Snackbar.LENGTH_LONG)
                         .setAction(getString(R.string.undo)) {
                             mainViewModel.undoDelete(swipedListItem)
-                            setAlarm(requireContext(), swipedListItem)
+                            if(swipedListItem.alarmTime.isNotEmpty()){
+                                setAlarm(requireContext(), swipedListItem)
+                            }
                             binding.rvLists.postDelayed({ binding.rvLists.scrollToPosition(position) }, 100)
                         }
                         .show()
@@ -211,6 +213,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun duplicateListItem(listItem: ToDoListItem) {
         mainViewModel.duplicateListItem(listItem, getString(R.string.copy))
+        adapter.notifyDataSetChanged()
     }
 
     private fun deleteListItem(listItem: ToDoListItem){

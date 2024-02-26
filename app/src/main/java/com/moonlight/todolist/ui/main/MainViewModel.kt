@@ -1,6 +1,5 @@
 package com.moonlight.todolist.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +8,8 @@ import com.moonlight.todolist.data.model.UserData
 import com.moonlight.todolist.data.repo.ToDoRepository
 import com.moonlight.todolist.data.repo.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.Calendar
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -66,6 +67,8 @@ class MainViewModel @Inject constructor(var trepo: ToDoRepository, var urepo: Us
 
     fun duplicateListItem(list: ToDoListItem, copyString: String) {
         list.title = "${list.title} $copyString"
+        list.createTime = Calendar.getInstance(Locale.ENGLISH).time.toString()
+        list.updateTime = Calendar.getInstance(Locale.ENGLISH).time.toString()
         trepo.newListItem(list, uid)
     }
 

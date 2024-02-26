@@ -9,7 +9,7 @@ class ToDoRepository(var tds: ToDoDataSource) {
 
     fun getListItems(uid: String?) : MutableLiveData<List<ToDoListItem>> = tds.getListItems(uid)
 
-    fun newListItem(list: ToDoListItem, uid: String?) = tds.newListItem(list, uid)
+    fun newListItem(list: ToDoListItem, uid: String?) : String = tds.newListItem(list, uid)
 
     fun updateListItem(list: ToDoListItem, uid: String?) = tds.updateListItem(list, uid)
 

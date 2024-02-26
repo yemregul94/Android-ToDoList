@@ -11,15 +11,20 @@ import com.moonlight.todolist.util.setAlarm
 
 class ToDoDataSource(var refDB: DatabaseReference) {
 
-    fun newListItem(listItem: ToDoListItem, uid: String?){
+    fun newListItem(listItem: ToDoListItem, uid: String?) : String{
+        var key = ""
         if(!uid.isNullOrEmpty()){
-            refDB.child("ToDoApp").child(uid).child("ToDoListItems").push().setValue(listItem).addOnCompleteListener {
+            key = refDB.child("ToDoApp").child(uid).child("ToDoListItems").push().key!!
+            listItem.id = key
+            refDB.child("ToDoApp").child(uid).child("ToDoListItems").child(key)
+                .setValue(listItem).addOnCompleteListener {
                 if(it.isSuccessful){
 
                 }
             }.addOnFailureListener {
             }
         }
+        return key
     }
 
     fun getListItems(uid: String?) : MutableLiveData<List<ToDoListItem>> {

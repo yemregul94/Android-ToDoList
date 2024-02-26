@@ -14,8 +14,8 @@ import javax.inject.Inject
 
 class ListItemDetailsViewModel @Inject constructor(var trepo: ToDoRepository) : ViewModel() {
 
-    fun newListItem(listItem: ToDoListItem, uid: String?){
-        trepo.newListItem(listItem, uid)
+    fun newListItem(listItem: ToDoListItem, uid: String?): String {
+        return trepo.newListItem(listItem, uid)
     }
 
     fun updateListItem(listItem: ToDoListItem, uid: String?){

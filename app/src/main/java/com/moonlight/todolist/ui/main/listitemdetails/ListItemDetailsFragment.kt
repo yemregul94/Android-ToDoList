@@ -78,7 +78,6 @@ class ListItemDetailsFragment : Fragment() {
         if(listItem?.id != null){
             binding.btnUpdate.visibility = View.VISIBLE
             binding.btnSave.visibility = View.INVISIBLE
-            binding.layoutAlarm.visibility = View.VISIBLE
             selectedPriority = listItem.priority
             binding.updateTime = formatTime(listItem.updateTime)
             selectedColor = listItem.color
@@ -305,7 +304,9 @@ class ListItemDetailsFragment : Fragment() {
             Calendar.getInstance(Locale.ENGLISH).time.toString(),
             alarmDateTime
         )
-        newListItem(newListItem, authViewModel.uid)
+        val key = newListItem(newListItem, authViewModel.uid)
+        newListItem.id = key
+        setAlert(newListItem)
         Toast.makeText(requireContext(), getString(R.string.list_item_created, binding.txtTitle.text.toString()), Toast.LENGTH_LONG).show()
 
         returnToPreviousScreen()
@@ -389,8 +390,8 @@ class ListItemDetailsFragment : Fragment() {
         }
     }
 
-    private fun newListItem(listItem: ToDoListItem, uid: String?){
-        viewModel.newListItem(listItem, uid)
+    private fun newListItem(listItem: ToDoListItem, uid: String?) : String{
+        return viewModel.newListItem(listItem, uid)
     }
 
     private fun updateListItem(listItem: ToDoListItem, uid: String?){
