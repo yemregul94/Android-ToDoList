@@ -35,7 +35,8 @@ class CustomAlertDialog {
             "category" -> {
                 layoutSecond.visibility = View.GONE
                 itemCheck.visibility = View.GONE
-                itemTextFirst.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+                itemTextFirst.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES or
+                        InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE or InputType.TYPE_TEXT_FLAG_AUTO_CORRECT
 
                 if(inputString == null){
                     builder.setTitle(activity.baseContext.getString(R.string.add_new_category))
@@ -51,7 +52,8 @@ class CustomAlertDialog {
             }
             "subTask" -> {
                 layoutSecond.visibility = View.GONE
-                itemTextFirst.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+                itemTextFirst.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES or
+                        InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE or InputType.TYPE_TEXT_FLAG_AUTO_CORRECT
 
                 if(inputString == null || inputCheck == null){
                     builder.setTitle(activity.baseContext.getString(R.string.add_new_sub_task))
@@ -72,7 +74,8 @@ class CustomAlertDialog {
                 positiveText = activity.baseContext.getString(R.string.save)
 
                 layoutFirst.hint = activity.baseContext.getString(R.string.input_email)
-                itemTextFirst.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                itemTextFirst.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or
+                        InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE or InputType.TYPE_TEXT_FLAG_AUTO_CORRECT
 
                 layoutSecond.hint = activity.baseContext.getString(R.string.input_new_password)
                 itemTextSecond.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
@@ -85,7 +88,8 @@ class CustomAlertDialog {
                 positiveText = activity.baseContext.getString(R.string.update)
 
                 layoutFirst.hint = activity.baseContext.getString(R.string.input_new_email)
-                itemTextFirst.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                itemTextFirst.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or
+                        InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE or InputType.TYPE_TEXT_FLAG_AUTO_CORRECT
                 itemTextFirst.setText(inputString)
                 layoutSecond.visibility = View.GONE
             }
