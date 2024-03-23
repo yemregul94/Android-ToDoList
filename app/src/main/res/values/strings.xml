@@ -44,6 +44,11 @@
     <string name="list_item_updated"><b>Updated:</b> %s</string>
     <string name="list_item_created"><b>Created:</b> %s</string>
 
+    <string name="are_you_sure">Are You Sure?</string>
+    <string name="unsaved_changes_lost">Unsaved changes will be lost!</string>
+    <string name="delete_changes">Delete Changes</string>
+    <string name="keep_editing">Keep Editing</string>
+
     //Button Common
     <string name="button_return">Return</string> //return is reserved by Java
     <string name="save">Save</string>

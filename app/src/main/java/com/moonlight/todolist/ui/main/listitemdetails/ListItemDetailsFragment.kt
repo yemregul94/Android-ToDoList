@@ -1,5 +1,6 @@
 package com.moonlight.todolist.ui.main.listitemdetails
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.graphics.Canvas
@@ -152,6 +153,7 @@ class ListItemDetailsFragment : Fragment() {
         observeCategoryChips()
         setOnRecyclerViewItemSwipedListener()
         checkAlarm()
+        backPressCheck()
 
         return binding.root
     }
@@ -489,6 +491,24 @@ class ListItemDetailsFragment : Fragment() {
             }
 
         }).attachToRecyclerView(binding.rvSubTasks)
+    }
+
+    private fun backPressCheck(){
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                AlertDialog.Builder(requireContext())
+                    .setTitle(getString(R.string.are_you_sure))
+                    .setMessage(getString(R.string.unsaved_changes_lost))
+                    .setPositiveButton(getString(R.string.delete_changes)) { _, _ ->
+                        isEnabled = false
+                        requireActivity().onBackPressed()
+                    }
+                    .setNegativeButton(getString(R.string.keep_editing)) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+        })
     }
 
     override fun onDestroyView() {

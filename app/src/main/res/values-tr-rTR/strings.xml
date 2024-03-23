@@ -46,6 +46,11 @@
     <string name="list_item_updated"><b>Güncellendi:</b> %s</string>
     <string name="list_item_created"><b>Oluşturuldu:</b> %s</string>
 
+    <string name="are_you_sure">Emin Misiniz?</string>
+    <string name="unsaved_changes_lost">Kaydedilmeyen değişiklikler silinecek!</string>
+    <string name="delete_changes">Değişiklikleri Sil</string>
+    <string name="keep_editing">Düzenlemeye Devam Et</string>
+
     //Button Common
     <string name="button_return">Geri Dön</string>
     <string name="save">Kaydet</string>
