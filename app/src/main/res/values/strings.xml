@@ -1,9 +1,9 @@
 <!DOCTYPE resources [
-    <!ENTITY appname "Check It Off">]>
+    <!ENTITY appname "To Do Leaf">]>
 
 <resources>
     //App Name
-    <string name="app_name">Check It Off</string>
+    <string name="app_name">To Do Leaf</string>
 
     //Priority Labels
     <string name="priority">Select Priority</string>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!DOCTYPE resources [
-    <!ENTITY appname "Check It Off">]>
+    <!ENTITY appname "To Do Leaf">]>
 
 <resources>
     //App Name
-    <string name="app_name">Check It Off</string>
+    <string name="app_name">To Do Leaf</string>
 
     //Priority Labels
     <string name="priority">Öncelik Seçin</string>
@@ -101,7 +101,7 @@
         \n\nUygulama hakkında bilgiler veren bu başlangıç rehberini dikkatle okumanızı öneririz.</string>
 
     //Welcome
-    <string name="welcome_first_login">&appname;\'a Hoş geldiniz</string>
+    <string name="welcome_first_login">&appname;\'e Hoş geldiniz</string>
     <string name="welcome_re_login">Hoş geldin %s</string>
 
     <string name="welcome_title">Hoş Geldiniz</string>
