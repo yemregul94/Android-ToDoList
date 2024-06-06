@@ -67,6 +67,7 @@ class ListItemDetailsFragment : Fragment() {
     private var selectedColor = ""
     private var selectedCategory = ""
     private var alarmDateTime = ""
+    private var changeSaved = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -291,6 +292,10 @@ class ListItemDetailsFragment : Fragment() {
         adapter.onSubTaskCheckClick = { position -> toggleComplete(position) }
     }
 
+    private fun saveChanges(){
+        changeSaved = true
+    }
+
     private fun saveListItem(){
         val newListItem = ToDoListItem("",
             binding.txtTitle.text.toString(),
@@ -311,6 +316,7 @@ class ListItemDetailsFragment : Fragment() {
         setAlert(newListItem)
         Toast.makeText(requireContext(), getString(R.string.list_item_created, binding.txtTitle.text.toString()), Toast.LENGTH_LONG).show()
 
+        saveChanges()
         returnToPreviousScreen()
     }
 
@@ -333,6 +339,7 @@ class ListItemDetailsFragment : Fragment() {
         setAlert(newListItem)
         Toast.makeText(requireContext(), getString(R.string.list_item_updated, binding.txtTitle.text.toString()), Toast.LENGTH_LONG).show()
 
+        saveChanges()
         returnToPreviousScreen()
     }
 
@@ -496,17 +503,23 @@ class ListItemDetailsFragment : Fragment() {
     private fun backPressCheck(){
         requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                AlertDialog.Builder(requireContext())
-                    .setTitle(getString(R.string.are_you_sure))
-                    .setMessage(getString(R.string.unsaved_changes_lost))
-                    .setPositiveButton(getString(R.string.delete_changes)) { _, _ ->
-                        isEnabled = false
-                        requireActivity().onBackPressed()
-                    }
-                    .setNegativeButton(getString(R.string.keep_editing)) { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    .show()
+                if(changeSaved){
+                    isEnabled = false
+                    requireActivity().onBackPressed()
+                }
+                else{
+                    AlertDialog.Builder(requireContext())
+                        .setTitle(getString(R.string.are_you_sure))
+                        .setMessage(getString(R.string.unsaved_changes_lost))
+                        .setPositiveButton(getString(R.string.delete_changes)) { _, _ ->
+                            isEnabled = false
+                            requireActivity().onBackPressed()
+                        }
+                        .setNegativeButton(getString(R.string.keep_editing)) { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                }
             }
         })
     }
